@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Capstone 2: Running</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="m-5 shadow-lg border border-dark rounded">
+                <div class="row align-items-center justify-content-around m-5">
+                    <div class="col-4">
+                        <div class="row">
+                            <figure class="figure">
+                                <img src="../static/imgs/c.jpg" class="figure-img img-thumbnail rounded">
+                                <figcaption class="figure-caption">운전자</figcaption>
+                            </figure>
+                            <figure class="figure">
+                                <img src="../static/imgs/d.jpg" class="figure-img img-thumbnail rounded">
+                                <figcaption class="figure-caption">차량 정면</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="row justify-content-around">
+                            <div class="col-4">
+                                <div class="row g-5 row justify-content-center">
+                                    <div class="col-10">
+                                        <div class="card text-center shadow mb-5 bg-body rounded">
+                                            <div class="card-header" style="font-size: 25px">사고 확률</div>
+                                            <div class="card-body">
+                                                <h2 id="probability" style="font-size: 75px">73%</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="card text-center shadow mb-5 bg-body rounded">
+                                            <div class="card-header" style="font-size: 25px">알림 설정 수치</div>
+                                            <div class="card-body">
+                                                <h2 id="probability" style="font-size: 75px">70%</h2>
+                                            </div>
+                                        </div>
+                                        <input type="range" class="form-range" min="0" max="10" step="0.5" id="customRange3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row g-5 row justify-content-center">
+                                    <div class="col-10">
+                                        <div class="btn-group" role="group" aria-label="Basic outlined example"  style="width: 100%">
+                                            <button onclick="start()" id="start-btn" class="btn btn-outline-success btn-lg">START</button>
+                                            <button onclick="stop()" id="end-btn" class="btn btn-outline-danger btn-lg">STOP</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card text-center shadow mb-5 bg-body rounded">
+                                            <div class="card-header" style="font-size: 15px">차량 속도</div>
+                                            <div class="card-body">
+                                                <h2 id="probability" style="font-size: 30px">67km/h</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card text-center shadow mb-5 bg-body rounded">
+                                            <div class="card-header" style="font-size: 15px">교통 혼잡도</div>
+                                            <div class="card-body">
+                                                <h2 id="probability" style="font-size: 30px">0%</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card text-center shadow mb-5 bg-body rounded">
+                                            <div class="card-header" style="font-size: 15px">졸음 운전 수치</div>
+                                            <div class="card-body">
+                                                <h2 id="probability" style="font-size: 25px">80 / 100</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="card shadow mb-5 bg-body rounded  text-center">
+                                            <div class="card-header">위험 요소 목록</div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">운전에 부주의한 행동</li>
+                                                <li class="list-group-item">졸음운전에 의한 사고 위험</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="lat" id="gps-lat">
+        <input type="hidden" name="lng" id="gps-lng">
+        <input type="hidden" name="timestamp" id="gps-t">
+    </body>
+</html>
